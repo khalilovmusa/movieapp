@@ -6,12 +6,12 @@ return (
    <section className='lg:hidden h-14 bg-neutral-600/40 fixed bottom-0 w-full'>
       <div className='flex items-center justify-between h-full text-neutral-400'>
          {
-            mobileNavigation.map((nav,i) => {
+            mobileNavigation.map((nav) => {
                return(
                   <NavLink 
                      key={nav.label+"mobilenavigation"}
                      to={nav.href}
-                     className={({isActive})=>`px-3 flex h-full items-center flex-col justify-center  ${isActive && 'text-white'}`}
+                     className={(props)=>`px-3 flex h-full items-center flex-col justify-center  ${props.isActive && 'text-white'}`}
                      >
                      <div className='text-2xl'>
                         {nav.icon}
