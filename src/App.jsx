@@ -6,7 +6,7 @@ import MobileNavigation from './components/MobileNavigation'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { setBannerData } from './store/movieoSlice'
+import { setBannerData, setImageURL } from './store/movieoSlice'
 
 function App() {
   const dispatch = useDispatch()
@@ -21,13 +21,29 @@ function App() {
     }
   }
 
+  const fetchConfiguration = async() => {
+
+    try{
+
+      const response = await axios.get("/configuration")
+
+      dispatch(setImageURL(response.data.images.secure_base_url+"original"))
+
+    }catch(e){
+
+      console.log("error",e)
+
+    }
+  }
+
   useEffect(() => {
     fetchTrendingData()
+    fetchConfiguration()
   },[])
   return (
     <main className='pb-14 lg:pb-0'>
       <Header/>
-      <div className='pt-16'>
+      <div className=''>
         <Outlet/>
       </div>
       <Footer/>
