@@ -25,9 +25,9 @@ const BannerHome = () => {
          if( prev < bannerData.length - 1) {
             return prev + 1
          }
-         return prev
+         return 0
         })
-      }, 3000)
+      }, 4000)
 
       return () => clearInterval(interval)
    },[bannerData, imageURL])
