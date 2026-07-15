@@ -1,20 +1,37 @@
-import { useSelector } from 'react-redux'
+import { useRef } from 'react'
 import Card from './Card'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
-const HorizontalScrollCard = () => {
-   const trendingData = useSelector(state => state.movieoData.bannerData)
+const HorizontalScrollCard = ({data = [], heading, trending}) => {
+   const containerRef = useRef();
+
+   const handleNext = () => {
+      containerRef.current.scrollLeft += 300;
+   }
+   const handlePrevious = () => {
+      containerRef.current.scrollLeft -= 300;
+   }
    return (
       <div className="container mx-auto px-3 my-10">
-         <h2 className="text-xl lg:text-2xl font-bold mb-3 text-white">Trending Shows</h2>
+         <h2 className="text-xl lg:text-2xl font-bold mb-3 text-white">{heading}</h2>
 
-         <div className="overflow-hidden">
-            <div className="grid grid-cols-[repeat(auto-fit,230px)] grid-flow-col gap-6 overflow-x-scroll">
+         <div className="relative">
+            <div ref={containerRef} className="overflow-hidden  grid grid-cols-[repeat(auto-fit,230px)] grid-flow-col gap-6 overflow-x-scroll relative z-10 scroll-smooth transition-all scrollbar-none">
                {
-                  trendingData.map((data, i) => {
+                  data.map((data, i) => {
                      return(
-                     <Card key={data.id} data={data} index={i+1} trending={true} />
+                     <Card key={data.id+"heading"+i} data={data} index={i+1} trending={trending} />
                   )})
                }
+            </div>
+
+            <div className="absolute top-0 hidden lg:flex justify-between w-full h-full items-center">
+               <button onClick={handlePrevious} className="bg-white p-1 text-black rounded-full -ml-2 z-10">
+                  <FaAngleLeft />
+               </button>
+               <button onClick={handleNext} className="bg-white p-1 text-black rounded-full -mr-2 z-10">
+                  <FaAngleRight />
+               </button>
             </div>
          </div>
       </div>

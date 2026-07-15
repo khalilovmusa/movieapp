@@ -33,12 +33,12 @@ const BannerHome = () => {
    },[bannerData, imageURL])
 
   return (
-    <section className="w-full h-full">
+    <section className="w-full h-full overflow-hidden">
       <div className="flex min-h-full max-h-[95vh]">
          {
             bannerData.map((data, index) => {
                return(
-                  <div key={index} className="min-w-full min-h-112.5 lg:min-h-full overflow-hidden relative group transition-all duration-500" style={{ transform: `translateX(-${currentImage * 100}%)`}}>
+                  <div key={data.id+"bannerHome"+index} className="min-w-full min-h-112.5 lg:min-h-full overflow-hidden relative group transition-all duration-500" style={{ transform: `translateX(-${currentImage * 100}%)`}}>
                      <div className="w-full h-full">
                         <img 
                            src={imageURL+data.backdrop_path}

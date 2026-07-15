@@ -22,17 +22,12 @@ function App() {
   }
 
   const fetchConfiguration = async() => {
-
     try{
-
       const response = await axios.get("/configuration")
 
       dispatch(setImageURL(response.data.images.secure_base_url+"original"))
-
     }catch(e){
-
       console.log("error",e)
-
     }
   }
 
@@ -40,6 +35,7 @@ function App() {
     fetchTrendingData()
     fetchConfiguration()
   },[])
+
   return (
     <main className='pb-14 lg:pb-0'>
       <Header/>
