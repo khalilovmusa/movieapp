@@ -54,7 +54,7 @@ const ExplorePage = () => {
       <div className="container mx-auto ">
         <h3 className="capitalize text-lg lg:text-xl font-semibold my-3">Popular {params.explore} shows</h3>
 
-        <div className="grid grid-cols-[repeat(auto-fit,230px)] gap-6 justify-center lg:justify-start">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-6 justify-center lg:justify-start">
           {
             data.map((exploteItemData, index) => {
               return(
