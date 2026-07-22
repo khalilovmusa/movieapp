@@ -68,7 +68,7 @@ const SearchPage = () => {
       </div>
       <div className="container mx-auto">
         <h3 className="capitalize text-lg lg:text-xl font-semibold my-3">Search Results</h3>
-          <div className="flex items-center gap-6 justify-center lg:justify-start">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-6 justify-center lg:justify-start">
             {
               data.map((searchData, index) => {
                 return(
