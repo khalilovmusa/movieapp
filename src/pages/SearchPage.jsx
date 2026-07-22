@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"
 import Card from "../components/Card";
 
@@ -10,11 +10,13 @@ const SearchPage = () => {
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
+  const query = location?.search?.slice(3);
+
   const fetchData = async () => {
     try {
       const response = await axios.get('/search/multi', {
         params: {
-          query: location.search?.slice(3),
+          query: location?.search?.slice(3),
           page: page,
         }
       })
@@ -36,13 +38,17 @@ const SearchPage = () => {
   }
 
   useEffect(() => {
-    fetchData()
+    if(query) {
+      fetchData()
+    }
   },[page])
 
   useEffect(() => {
-    setPage(1)
-    setData([])
-    fetchData()
+    if(query){
+      setPage(1)
+      setData([])
+      fetchData()
+    }
   },[location?.search])
 
   useEffect(() =>{
@@ -56,6 +62,7 @@ const SearchPage = () => {
           type="text"
           placeholder="Search"
           onChange={(e) => navigate(`/search?q=${e.target.value}`)}
+          value={query.split("%20")?.join(" ")}
           className="px-4 py-1 text-lg w-full bg-white rounded-full text-neutral-900"
         />
       </div>

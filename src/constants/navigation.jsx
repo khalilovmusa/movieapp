@@ -22,10 +22,10 @@ export const mobileNavigation = [
       href: "/",
       icon: <MdHomeFilled />
    },
+   ...navigation,
    {
       label: "Search",
       href: "/search",
       icon: <IoSearchOutline />
    },
-   ...navigation
 ]
